@@ -4,13 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body{
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: #0d0d0d;
+            color: #f0ece4;
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+            padding: 3rem 2rem;
+            background-image: radial-gradient(ellipse at 20% 20%, #1a0533 0%, transparent 50%),
+                              radial-gradient(ellipse at 80% 80%, #001a33 0%, transparent 50%);
+        }
+
+        h1 {
+            font-family: 'Bungee', cursive;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ff4ecd, #ffb347, #4edfff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.25rem;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff4ecd, #c34eff);
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.6rem 1.4rem;
+            border-radius: 999px;
+            margin-bottom: 3rem;
+            transition: opacity 0.2s, transform 0.2s;
+            box-shadow: 0 0 20px rgba(255, 78, 205, 0.3);
+        }
+
+        .upload-btn:hover { opacity: 0.85; transform: translateY(-2px); }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .game-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            max-width: 480px;
+        }
+
+        .game-list li a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #f0ece4;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s, border-color 0.2s, transform 0.15s;
+        }
+
+        .game-list li a:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255, 78, 205, 0.4);
+            transform: translateX(4px);
+        }
+
+        .game-list li a .icon {
+            font-size: 1.3rem;
+            width: 2rem;
             text-align: center;
         }
+
+        .game-list li a .arrow {
+            margin-left: auto;
+            color: #444;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        .game-list li a:hover .arrow { color: #ff4ecd; }
     </style>
 </head>
 <body>
-    <h1>Super cool site for games</h1> :):):)<br> (If you want to post a game but don't know how to gode, email me the link to a scratch project you own, and I will add it)
+    <h1>Cool games!</h1>
+    <p class="subtitle">Pick a game and play</p>
+
+    <a class="upload-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSePShAS7jF55-vIxIoMlWrVgMGdq84y37B4Z899JchPpJJCkg/viewform?usp=publish-editor">
+        ↑ Upload a game
+    </a>
+
+    <p class="section-label">All games</p>
+
+    <!-- ✏️ ADD GAMES HERE — format: { name: "Display Name", emoji: "🎮", file: "filename" } -->
+    <ul class="game-list" id="gameList"></ul>
+
+    <script>
+        const games = [
+            { name: "My singing monsters(HOME)",      emoji: " 👺", file: "MySing.html"      }
+            // Add more here ↓
+        ];
+
+        const list = document.getElementById("gameList");
+        games.forEach(g => {
+            list.innerHTML += `
+              <li>
+                <a href="${g.file}.html">
+                  <span class="icon">${g.emoji}</span>
+                  ${g.name}
+                  <span class="arrow">→</span>
+                </a>
+              </li>`;
+        });
+    </script>
 </body>
 </html>
